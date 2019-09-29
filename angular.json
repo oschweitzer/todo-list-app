@@ -26,9 +26,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.sass"
-            ],
+            "styles": ["apps/todo-list/src/styles.scss",
+            "./node_modules/bulma/bulma.sass"],
             "scripts": []
           },
           "configurations": {
