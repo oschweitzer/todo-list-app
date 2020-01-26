@@ -1,0 +1,23 @@
+version: "2.4"
+services:
+  postgres:
+    image: postgres:12.1-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: todo
+    ports:
+    - 5432:5432
+
+  pgweb:
+    image: sosedoff/pgweb:0.11.5
+    ports:
+      - "8081:8081"
+    restart: always
+    links:
+      - postgres:postgres
+    environment:
+      - DATABASE_URL=postgres://root:root@postgres:5432/todo?sslmode=disable
+    depends_on:
+      - postgres
