@@ -23,6 +23,12 @@
     },
     "api-interfaces": {
       "tags": []
+    },
+    "crud": {
+      "tags": []
+    },
+    "models": {
+      "tags": []
     }
   }
 }

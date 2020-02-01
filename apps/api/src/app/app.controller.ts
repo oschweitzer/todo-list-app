@@ -1,15 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
-
-import { Message } from '@todo-list-app/api-interfaces';
-
-import { AppService } from './app.service';
+import {Controller, Get} from '@nestjs/common';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor() {}
 
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
+  @Get()
+  getData(): string {
+    return 'Welcome to the TodoList API';
   }
 }

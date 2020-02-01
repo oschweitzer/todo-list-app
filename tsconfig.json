@@ -16,7 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@todo-list-app/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@todo-list-app/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@todo-list-app/crud": ["libs/crud/src/index.ts"],
+      "@todo-list-app/models": ["libs/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
