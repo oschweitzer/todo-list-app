@@ -22,20 +22,14 @@ export class CrudService<T extends Repository<U>, U extends ObjectLiteral> {
   }
 
   async updateOne(id: number, changes: DeepPartial<U>): Promise<U> {
-    try {
-      const entityToUpdate = await this.findOne(id);
-      return await this.repository.save(this.repository.merge(entityToUpdate, changes));
-    } catch (e) {
-      throw e;
-    }
+    const entityToUpdate = await this.findOne(id);
+    return await this.repository.save(
+      this.repository.merge(entityToUpdate, changes),
+    );
   }
 
   async deleteOne(id: number): Promise<U> {
-    try {
-      const record = await this.findOne(id);
-      return await this.repository.remove(record);
-    } catch (e) {
-      throw e;
-    }
+    const record = await this.findOne(id);
+    return await this.repository.remove(record);
   }
 }
