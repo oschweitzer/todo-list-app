@@ -1,7 +1,0 @@
-{
-  "extends": "../../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "todoListApp", "camelCase"],
-    "component-selector": [true, "element", "todo-list-app", "kebab-case"]
-  }
-}

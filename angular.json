@@ -78,16 +78,6 @@
             "browserTarget": "todo-list:build"
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/todo-list/tsconfig.app.json",
-              "apps/todo-list/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/todo-list/**"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -114,13 +104,6 @@
             "production": {
               "devServerTarget": "todo-list:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/todo-list-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/todo-list-e2e/**"]
           }
         }
       }
@@ -160,16 +143,6 @@
             "buildTarget": "api:build"
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/api/**"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -185,16 +158,6 @@
       "projectType": "library",
       "schematics": {},
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/api-interfaces/tsconfig.lib.json",
-              "libs/api-interfaces/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/api-interfaces/**"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -210,16 +173,6 @@
       "projectType": "library",
       "schematics": {},
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/crud/tsconfig.lib.json",
-              "libs/crud/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/crud/**"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -235,16 +188,6 @@
       "projectType": "library",
       "schematics": {},
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/models/tsconfig.lib.json",
-              "libs/models/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/models/**"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
