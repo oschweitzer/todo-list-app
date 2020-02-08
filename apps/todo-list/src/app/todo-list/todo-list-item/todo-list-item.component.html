@@ -3,13 +3,11 @@
     <mat-form-field class="item" appearance="fill">
       <mat-label>Todo description</mat-label>
       <label>
-        <input type="text" matInput placeholder="Ex. Book a restaurant" />
+        <input type="text" matInput placeholder="Ex. Book a restaurant" [(ngModel)]="todoItem" />
       </label>
-      <button mat-icon-button matSuffix aria-label="Button with a check icon">
-        <mat-icon>check_circle</mat-icon>
+      <button mat-icon-button matSuffix aria-label="Button with a check icon" (click)="createTodoItem()">
+        <mat-icon class="validation-icon">check_circle</mat-icon>
       </button>
     </mat-form-field>
-
-
   </form>
 </div>

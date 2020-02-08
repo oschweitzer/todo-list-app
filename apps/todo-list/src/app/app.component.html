@@ -1,1 +1,16 @@
-<todo-list-app-todo-list category="Test"></todo-list-app-todo-list>
+<div class="main-container">
+  <div class="main-header">
+    <h1>Todo Lists</h1>
+  </div>
+  <div class="todo-list-container" #todoListsRef>
+
+  </div>
+  <div class="todo-list-creation-section">
+    <button mat-fab color="accent" aria-label="Button with a plus icon" (click)="openDialog()"
+            class="createTodoListButton" matTooltip="Create a new Todo list">
+      +
+    </button>
+  </div>
+
+</div>
+

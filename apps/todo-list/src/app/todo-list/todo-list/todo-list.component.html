@@ -1,8 +1,13 @@
-<mat-card class="example-card">
+<mat-card class="todo-list-card">
   <mat-card-header>
-    <mat-card-title>{{category}}</mat-card-title>
+    <mat-card-title>
+      {{category}}
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <todo-list-app-todo-list-item></todo-list-app-todo-list-item>
+    <button mat-fab color="primary" aria-label="Button with a plus icon" (click)="addNewItem()" class="addItemButton"
+            matTooltip="Create a new Todo list item">
+      +
+    </button>
   </mat-card-content>
 </mat-card>
