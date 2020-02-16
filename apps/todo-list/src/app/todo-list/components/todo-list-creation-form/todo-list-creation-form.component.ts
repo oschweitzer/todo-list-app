@@ -12,7 +12,6 @@ import { TodoListCategoryService } from '../../services/todo-list-category.servi
   providers: [TodoListCategoryService],
 })
 export class TodoListCreationFormComponent implements OnInit {
-
   todoCreationForm;
   todoList: {
     category: string;
@@ -21,9 +20,11 @@ export class TodoListCreationFormComponent implements OnInit {
 
   categories$: Observable<CategoryEntity[]>;
 
-  constructor(private readonly categoryService: TodoListCategoryService,
-              private formBuilder: FormBuilder,
-              public dialogRef: MatDialogRef<TodoListCreationFormComponent>){
+  constructor(
+    private readonly categoryService: TodoListCategoryService,
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<TodoListCreationFormComponent>,
+  ) {
     this.todoCreationForm = this.formBuilder.group({
       categorySelector: 'None',
       category: '',
@@ -42,6 +43,4 @@ export class TodoListCreationFormComponent implements OnInit {
   submit() {
     this.dialogRef.close(this.todoCreationForm.value);
   }
-
-
 }

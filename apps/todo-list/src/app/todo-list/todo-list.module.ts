@@ -8,7 +8,8 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatSelectModule,
+  MatInputModule,
+  MatSelectModule,
   MatTooltipModule,
 } from '@angular/material';
 import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';

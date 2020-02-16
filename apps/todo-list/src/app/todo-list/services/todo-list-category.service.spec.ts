@@ -6,7 +6,9 @@ describe('TodoListCategoryService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: TodoListCategoryService = TestBed.get(TodoListCategoryService);
+    const service: TodoListCategoryService = TestBed.get(
+      TodoListCategoryService,
+    );
     expect(service).toBeTruthy();
   });
 });

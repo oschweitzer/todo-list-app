@@ -10,13 +10,13 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class TodoListCategoryService {
-  constructor(
-    private readonly httpClient: HttpClient,
-  ) { }
+  constructor(private readonly httpClient: HttpClient) {}
 
   getAll(): Observable<CategoryEntity[]> {
-    return this.httpClient.get<DataMessage<CategoryEntity>>(`${environment.api.baseUrl}/api/categories`).pipe(
-      map(response => response.data)
-    );
+    return this.httpClient
+      .get<DataMessage<CategoryEntity>>(
+        `${environment.api.baseUrl}/api/categories`,
+      )
+      .pipe(map(response => response.data));
   }
 }
