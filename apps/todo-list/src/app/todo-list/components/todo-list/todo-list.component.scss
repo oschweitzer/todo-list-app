@@ -1,0 +1,19 @@
+.todo-list-card {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.todo-list-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todo-list-button {
+  margin-right: 1%;
+  margin-left: 1%;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.remove-button {
+  background-color: red;
+}

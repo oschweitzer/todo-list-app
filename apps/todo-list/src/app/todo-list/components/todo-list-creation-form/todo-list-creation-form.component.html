@@ -1,0 +1,25 @@
+<div>
+  <form>
+    <mat-dialog-content>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Category</mat-label>
+        <label>
+          <input matInput placeholder="Ex. Groceries" [(ngModel)]="todoList.category" [ngModelOptions]="{standalone:
+          true}">
+        </label>
+
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Name</mat-label>
+        <label>
+          <input matInput placeholder="Ex. My weekly groceries list" [(ngModel)]="todoList.name"
+                 [ngModelOptions]="{standalone: true}">
+        </label>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="form-actions">
+      <button mat-button mat-dialog-close color="warn">Cancel</button>
+      <button mat-button color="primary" type="submit" [mat-dialog-close]="todoList">OK</button>
+    </mat-dialog-actions>
+  </form>
+</div>

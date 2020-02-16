@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo-list-creation-form.component.scss'],
 })
 export class TodoListCreationFormComponent {
-  category: string;
+  todoList: {
+    category: string;
+    name: string;
+  } = { category: '', name: '' };
 }

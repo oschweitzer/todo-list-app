@@ -1,0 +1,28 @@
+<div>
+  <form [formGroup]="todoItemForm">
+    <mat-form-field class="item" appearance="fill" floatLabel="never">
+      <div class="todo-item-container">
+        <label class="todo-item-description" >
+          <input type="text" matInput placeholder="Ex. Book a restaurant"
+                 formControlName="todo" #todoText/>
+        </label>
+
+        <button mat-icon-button aria-label="Button with a check icon"
+                (click)="createTodoItem()">
+          <mat-icon *ngIf="!created else edit" class="creation-validation-icon">check_circle</mat-icon>
+          <ng-template #edit><mat-icon class="edit-icon">create</mat-icon></ng-template>
+        </button>
+
+        <button mat-icon-button aria-label="Button with a check box icon" (click)="validateTodoItem()">
+          <mat-icon *ngIf="!validated else undone" class="todo-validation-icon">check_box_outline_blank</mat-icon>
+          <ng-template #undone><mat-icon class="todo-validation-icon">check_box</mat-icon></ng-template>
+        </button>
+
+        <button mat-icon-button aria-label="Button with a cross icon" (click)="removeTodoItem()">
+          <mat-icon class="remove-icon">remove_circle</mat-icon>
+        </button>
+      </div>
+
+    </mat-form-field>
+  </form>
+</div>

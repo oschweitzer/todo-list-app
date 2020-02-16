@@ -1,0 +1,22 @@
+.todo-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.todo-item-description {
+  flex-grow: 1;
+}
+
+.item {
+  width: 100%;
+}
+
+.creation-validation-icon {
+  color: green;
+}
+
+.remove-icon {
+  color: red;
+}
+

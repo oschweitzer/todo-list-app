@@ -1,6 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatCardModule,
@@ -10,9 +11,9 @@ import {
   MatInputModule,
   MatTooltipModule,
 } from '@angular/material';
-import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoListCreationFormComponent } from './todo-list-creation-form/todo-list-creation-form.component';
+import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoListCreationFormComponent } from './components/todo-list-creation-form/todo-list-creation-form.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TodoListCreationFormComponent } from './todo-list-creation-form/todo-li
   exports: [TodoListComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
@@ -31,7 +33,12 @@ import { TodoListCreationFormComponent } from './todo-list-creation-form/todo-li
     MatDialogModule,
     MatTooltipModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  entryComponents: [TodoListComponent, TodoListCreationFormComponent],
+  entryComponents: [
+    TodoListComponent,
+    TodoListCreationFormComponent,
+    TodoListItemComponent,
+  ],
 })
 export class TodoListModule {}

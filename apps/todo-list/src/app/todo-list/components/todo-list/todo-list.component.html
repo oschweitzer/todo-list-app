@@ -1,0 +1,25 @@
+<mat-card class="todo-list-card">
+  <mat-card-header>
+    <mat-card-title>
+      {{category.toLocaleUpperCase()}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{name[0].toUpperCase() + name.slice(1)}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="todo-list-actions">
+      <button mat-fab color="primary" aria-label="Button with a plus icon" (click)="addNewItem()"
+              class="todo-list-button"
+              matTooltip="Create a new Todo list item">
+        +
+      </button>
+      <button mat-fab aria-label="Button with a minus icon" (click)="removeList()" class="remove-button todo-list-button"
+              matTooltip="Delete the Todo list">
+        -
+      </button>
+
+    </div>
+    <div #todoListItemsRef></div>
+  </mat-card-content>
+</mat-card>

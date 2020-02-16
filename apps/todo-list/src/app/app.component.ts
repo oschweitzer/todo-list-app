@@ -10,8 +10,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { TodoListCreationFormComponent } from './todo-list/todo-list-creation-form/todo-list-creation-form.component';
-import { TodoListComponent } from './todo-list/todo-list/todo-list.component';
+import { TodoListCreationFormComponent } from './todo-list/components/todo-list-creation-form/todo-list-creation-form.component';
+import { TodoListComponent } from './todo-list/components/todo-list/todo-list.component';
+import { TodoListService } from './todo-list/services/todo-list.service';
 
 // eslint-disable-next-line import/no-unresolved
 
@@ -19,6 +20,7 @@ import { TodoListComponent } from './todo-list/todo-list/todo-list.component';
   selector: 'todo-list-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [TodoListService],
 })
 export class AppComponent {
   @ViewChild('todoListsRef', { static: false }) todoListRef: ElementRef;
@@ -30,26 +32,32 @@ export class AppComponent {
     private injector: Injector,
     private renderer: Renderer2,
     public dialog: MatDialog,
+    private readonly todoListService: TodoListService,
   ) {}
 
-  createTodoList(category: string): void {
-    const componentRef = this.componentFactoryResolver
-      .resolveComponentFactory(TodoListComponent)
-      .create(this.injector);
-    componentRef.instance.category = category;
-    this.appRef.attachView(componentRef.hostView);
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
-      .rootNodes[0] as HTMLElement;
-    this.renderer.appendChild(this.todoListRef.nativeElement, domElem);
-
-    // call service to save the todo list and the category in the database
+  createTodoList(todoList: { category: string; name: string }): void {
+    this.todoListService.save({ name: todoList.name }).subscribe(response => {
+      const componentRef = this.componentFactoryResolver
+        .resolveComponentFactory(TodoListComponent)
+        .create(this.injector);
+      this.appRef.attachView(componentRef.hostView);
+      const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
+        .rootNodes[0] as HTMLElement;
+      componentRef.instance.category = todoList.category;
+      componentRef.instance.name = todoList.name;
+      componentRef.instance.domElement = domElem;
+      componentRef.instance.id = response.data[0].id;
+      this.renderer.appendChild(this.todoListRef.nativeElement, domElem);
+    });
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(TodoListCreationFormComponent);
-    dialogRef.afterClosed().subscribe(category => {
-      if (category) {
-        this.createTodoList(category);
+    const dialogRef = this.dialog.open(TodoListCreationFormComponent, {
+      width: '50%',
+    });
+    dialogRef.afterClosed().subscribe(todoList => {
+      if (todoList) {
+        this.createTodoList(todoList);
       }
     });
   }
