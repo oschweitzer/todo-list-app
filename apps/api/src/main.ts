@@ -12,6 +12,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
+  app.enableCors();
 
   const options = new DocumentBuilder()
     .setTitle('Todo List API')
