@@ -13,11 +13,6 @@ import { TodoListCategoryService } from '../../services/todo-list-category.servi
 })
 export class TodoListCreationFormComponent implements OnInit {
   todoCreationForm;
-  todoList: {
-    category: string;
-    name: string;
-  } = { category: '', name: '' };
-
   categories$: Observable<CategoryEntity[]>;
 
   constructor(
@@ -26,21 +21,16 @@ export class TodoListCreationFormComponent implements OnInit {
     public dialogRef: MatDialogRef<TodoListCreationFormComponent>,
   ) {
     this.todoCreationForm = this.formBuilder.group({
-      categorySelector: 'None',
-      category: '',
+      category: {},
       name: '',
     });
-  }
-
-  get categorySelector(): any {
-    return this.todoCreationForm.get('categorySelector');
   }
 
   ngOnInit(): void {
     this.categories$ = this.categoryService.getAll();
   }
 
-  submit() {
+  submit(): void {
     this.dialogRef.close(this.todoCreationForm.value);
   }
 }

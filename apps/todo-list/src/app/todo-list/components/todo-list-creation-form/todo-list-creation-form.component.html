@@ -3,21 +3,13 @@
     <mat-dialog-content>
       <mat-form-field appearance="fill" class="form-field">
         <mat-label>Select an existing category</mat-label>
-        <mat-select formControlName="categorySelector">
+        <mat-select formControlName="category">
           <mat-option value="none">None</mat-option>
           <mat-option value="new">Create new category</mat-option>
-          <mat-option [value]="category.id" *ngFor="let category of categories$ | async"></mat-option>
+          <mat-option [value]="category"
+                      *ngFor="let category of categories$ | async">{{category.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-form-field *ngIf="categorySelector.value === 'new'" appearance="fill"
-                      class="form-field">
-        <mat-label>Category</mat-label>
-        <label>
-          <input matInput placeholder="Ex. Groceries" formControlName="category">
-        </label>
-      </mat-form-field>
-
 
       <mat-form-field appearance="fill" class="form-field">
         <mat-label>Name</mat-label>

@@ -15,12 +15,14 @@ import {
 import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoListCreationFormComponent } from './components/todo-list-creation-form/todo-list-creation-form.component';
+import { CategoryCreationFormComponent } from './components/category-creation-form/category-creation-form.component';
 
 @NgModule({
   declarations: [
     TodoListComponent,
     TodoListItemComponent,
     TodoListCreationFormComponent,
+    CategoryCreationFormComponent,
   ],
   exports: [TodoListComponent],
   imports: [
@@ -41,6 +43,7 @@ import { TodoListCreationFormComponent } from './components/todo-list-creation-f
     TodoListComponent,
     TodoListCreationFormComponent,
     TodoListItemComponent,
+    CategoryCreationFormComponent,
   ],
 })
 export class TodoListModule {}

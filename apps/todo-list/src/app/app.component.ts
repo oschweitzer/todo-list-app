@@ -10,8 +10,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { CategoryCreationFormComponent } from './todo-list/components/category-creation-form/category-creation-form.component';
 import { TodoListCreationFormComponent } from './todo-list/components/todo-list-creation-form/todo-list-creation-form.component';
 import { TodoListComponent } from './todo-list/components/todo-list/todo-list.component';
+import { TodoListCategoryService } from './todo-list/services/todo-list-category.service';
 import { TodoListService } from './todo-list/services/todo-list.service';
 
 // eslint-disable-next-line import/no-unresolved
@@ -20,7 +22,7 @@ import { TodoListService } from './todo-list/services/todo-list.service';
   selector: 'todo-list-app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [TodoListService],
+  providers: [TodoListService, TodoListCategoryService],
 })
 export class AppComponent {
   @ViewChild('todoListsRef', { static: false }) todoListRef: ElementRef;
@@ -33,9 +35,13 @@ export class AppComponent {
     private renderer: Renderer2,
     public dialog: MatDialog,
     private readonly todoListService: TodoListService,
+    private readonly categoryService: TodoListCategoryService,
   ) {}
 
-  createTodoList(todoList: { category: string; name: string }): void {
+  createTodoList(todoList: {
+    category: { name: string; id: number };
+    name: string;
+  }): void {
     this.todoListService.save({ name: todoList.name }).subscribe(response => {
       const componentRef = this.componentFactoryResolver
         .resolveComponentFactory(TodoListComponent)
@@ -43,7 +49,7 @@ export class AppComponent {
       this.appRef.attachView(componentRef.hostView);
       const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
         .rootNodes[0] as HTMLElement;
-      componentRef.instance.category = todoList.category;
+      componentRef.instance.category = todoList.category.name;
       componentRef.instance.name = todoList.name;
       componentRef.instance.domElement = domElem;
       componentRef.instance.id = response.data[0].id;
@@ -51,13 +57,28 @@ export class AppComponent {
     });
   }
 
-  openDialog(): void {
+  createCategory(category: { name: string }): void {
+    this.categoryService.save(category).subscribe();
+  }
+
+  openCreateTodoListForm(): void {
     const dialogRef = this.dialog.open(TodoListCreationFormComponent, {
       width: '50%',
     });
-    dialogRef.afterClosed().subscribe(todoList => {
-      if (todoList) {
-        this.createTodoList(todoList);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.createTodoList(data);
+      }
+    });
+  }
+
+  openCreateCategoryForm(): void {
+    const dialogRef = this.dialog.open(CategoryCreationFormComponent, {
+      width: '50%',
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.createCategory(data);
       }
     });
   }

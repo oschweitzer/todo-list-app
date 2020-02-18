@@ -6,8 +6,15 @@
 
   </div>
   <div class="todo-list-creation-section">
-    <button mat-fab color="accent" aria-label="Button with a plus icon" (click)="openDialog()"
+    <button mat-fab color="accent" aria-label="Button with a plus icon" (click)="openCreateTodoListForm()"
             class="createTodoListButton" matTooltip="Create a new Todo list">
+      +
+    </button>
+  </div>
+
+  <div class="todo-list-creation-section">
+    <button mat-fab color="primary" aria-label="Button with a plus icon" (click)="openCreateCategoryForm()"
+            class="createTodoListButton" matTooltip="Create a new category">
       +
     </button>
   </div>

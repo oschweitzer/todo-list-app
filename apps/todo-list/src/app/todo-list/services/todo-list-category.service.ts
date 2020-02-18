@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataMessage } from '@todo-list-app/api-interfaces';
-import { CategoryEntity } from '@todo-list-app/models';
+import { CategoryEntity, CreateCategoryDto } from '@todo-list-app/models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -16,6 +16,15 @@ export class TodoListCategoryService {
     return this.httpClient
       .get<DataMessage<CategoryEntity>>(
         `${environment.api.baseUrl}/api/categories`,
+      )
+      .pipe(map(response => response.data));
+  }
+
+  save(category: CreateCategoryDto): Observable<CategoryEntity[]> {
+    return this.httpClient
+      .post<DataMessage<CategoryEntity>>(
+        `${environment.api.baseUrl}/api/categories`,
+        category,
       )
       .pipe(map(response => response.data));
   }
