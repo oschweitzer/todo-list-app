@@ -20,12 +20,18 @@ export class TodoListEntity {
   @OneToMany(
     type => TodoListItemEntity,
     item => item.todoList,
+    {
+      eager: true,
+    },
   )
   items: TodoListItemEntity[];
 
   @ManyToMany(
     type => CategoryEntity,
     category => category.todoLists,
+    {
+      eager: true,
+    },
   )
   @JoinTable()
   categories: CategoryEntity[];
