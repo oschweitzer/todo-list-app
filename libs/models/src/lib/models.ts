@@ -1,3 +1,4 @@
+import { CategoryEntity } from './category.entity';
 import { TodoListEntity } from './todo-list.entity';
 
 export interface CreateCategoryDto {
@@ -10,6 +11,7 @@ export interface UpdateCategoryDto {
 
 export interface CreateTodoListDto {
   name: string;
+  categories: CategoryEntity[];
 }
 
 export interface UpdateTodoListDto {
