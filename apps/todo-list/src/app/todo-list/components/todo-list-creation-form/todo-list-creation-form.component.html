@@ -5,7 +5,6 @@
         <mat-label>Select an existing category</mat-label>
         <mat-select formControlName="category">
           <mat-option value="none">None</mat-option>
-          <mat-option value="new">Create new category</mat-option>
           <mat-option [value]="category"
                       *ngFor="let category of categories$ | async">{{category.name}}</mat-option>
         </mat-select>

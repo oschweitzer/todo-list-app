@@ -2,22 +2,24 @@
   <div class="main-header">
     <h1>Todo Lists</h1>
   </div>
-  <div class="todo-list-container" #todoListsRef>
+  <div class="creation-section-container">
+    <div class="creation-section">
+      <h3>Create TODO list</h3><br>
+      <button mat-fab color="accent" aria-label="Button with a plus icon" (click)="openCreateTodoListForm()"
+              class="create-button" matTooltip="Create a new Todo list">
+        +
+      </button>
+    </div>
+
+    <div class="creation-section">
+      <h3>Create a category</h3><br>
+      <button mat-fab color="primary" aria-label="Button with a plus icon" (click)="openCreateCategoryForm()"
+              class="create-button" matTooltip="Create a new category">
+        +
+      </button>
+    </div>
 
   </div>
-  <div class="todo-list-creation-section">
-    <button mat-fab color="accent" aria-label="Button with a plus icon" (click)="openCreateTodoListForm()"
-            class="createTodoListButton" matTooltip="Create a new Todo list">
-      +
-    </button>
-  </div>
-
-  <div class="todo-list-creation-section">
-    <button mat-fab color="primary" aria-label="Button with a plus icon" (click)="openCreateCategoryForm()"
-            class="createTodoListButton" matTooltip="Create a new category">
-      +
-    </button>
-  </div>
-
+  <div class="todo-list-container" #todoListsRef></div>
 </div>
 

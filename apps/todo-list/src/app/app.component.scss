@@ -15,14 +15,26 @@
   justify-content: center;
 }
 
-.todo-list-creation-section {
-  margin-top: 15%;
+.creation-section-container {
+  margin-left: 10%;
+  margin-right: 10%;
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.creation-section {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.createTodoListButton {
+.create-button {
   font-weight: bolder;
   font-size: 2em;
 }
 
+.todo-list-container {
+  margin-top: 5%;
+}
