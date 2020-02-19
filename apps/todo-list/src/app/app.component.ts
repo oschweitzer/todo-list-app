@@ -6,10 +6,13 @@ import {
   ElementRef,
   EmbeddedViewRef,
   Injector,
+  OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { CategoryEntity, TodoListEntity } from '@todo-list-app/models';
+import { Observable } from 'rxjs';
 import { CategoryCreationFormComponent } from './todo-list/components/category-creation-form/category-creation-form.component';
 import { TodoListCreationFormComponent } from './todo-list/components/todo-list-creation-form/todo-list-creation-form.component';
 import { TodoListComponent } from './todo-list/components/todo-list/todo-list.component';
@@ -24,8 +27,9 @@ import { TodoListService } from './todo-list/services/todo-list.service';
   styleUrls: ['./app.component.scss'],
   providers: [TodoListService, TodoListCategoryService],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('todoListsRef', { static: false }) todoListRef: ElementRef;
+  todoLists$: Observable<TodoListEntity[]>;
 
   constructor(
     private http: HttpClient,
@@ -38,23 +42,29 @@ export class AppComponent {
     private readonly categoryService: TodoListCategoryService,
   ) {}
 
+  ngOnInit(): void {
+    this.todoLists$ = this.todoListService.getAll();
+  }
+
   createTodoList(todoList: {
-    category: { name: string; id: number };
+    category: CategoryEntity;
     name: string;
   }): void {
-    this.todoListService.save({ name: todoList.name }).subscribe(response => {
-      const componentRef = this.componentFactoryResolver
-        .resolveComponentFactory(TodoListComponent)
-        .create(this.injector);
-      this.appRef.attachView(componentRef.hostView);
-      const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
-        .rootNodes[0] as HTMLElement;
-      componentRef.instance.category = todoList.category.name;
-      componentRef.instance.name = todoList.name;
-      componentRef.instance.domElement = domElem;
-      componentRef.instance.id = response.data[0].id;
-      this.renderer.appendChild(this.todoListRef.nativeElement, domElem);
-    });
+    this.todoListService
+      .save({ name: todoList.name, categories: [todoList.category] })
+      .subscribe(response => {
+        const componentRef = this.componentFactoryResolver
+          .resolveComponentFactory(TodoListComponent)
+          .create(this.injector);
+        this.appRef.attachView(componentRef.hostView);
+        const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
+          .rootNodes[0] as HTMLElement;
+        componentRef.instance.category = todoList.category.name;
+        componentRef.instance.name = todoList.name;
+        componentRef.instance.domElement = domElem;
+        componentRef.instance.id = response.data[0].id;
+        this.renderer.appendChild(this.todoListRef.nativeElement, domElem);
+      });
   }
 
   createCategory(category: { name: string }): void {

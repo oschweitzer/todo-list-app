@@ -20,6 +20,12 @@
     </div>
 
   </div>
-  <div class="todo-list-container" #todoListsRef></div>
+  <div class="todo-list-container" #todoListsRef>
+    <div *ngFor="let todoList of todoLists$ | async">
+      <todo-list-app-todo-list
+      [category]="todoList.categories[0].name"
+      [name]="todoList.name"></todo-list-app-todo-list>
+    </div>
+  </div>
 </div>
 
