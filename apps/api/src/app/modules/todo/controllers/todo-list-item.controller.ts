@@ -40,6 +40,16 @@ export class TodoListItemController {
     };
   }
 
+  @Get('todo-list/:id')
+  async getAllFromTodoListId(
+    @Param('id') id: number,
+  ): Promise<DataMessage<TodoListItemEntity>> {
+    return {
+      message: 'Todo list items successfully fetched',
+      data: await this.service.findAllFromTodoListId(id),
+    };
+  }
+
   @Get(':id')
   async getOne(
     @Param('id') id: number,
