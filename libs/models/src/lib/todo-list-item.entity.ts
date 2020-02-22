@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  RelationId,
+} from 'typeorm';
 import { TodoListEntity } from './todo-list.entity';
 
 @Entity()
@@ -19,8 +25,14 @@ export class TodoListItemEntity {
   })
   endDate: Date;
 
-  @Column()
+  @Column({
+    default: false,
+  })
   isDone: boolean;
+
+  @RelationId((todoList: TodoListItemEntity) => todoList.todoList)
+  @Column()
+  todoListId: number;
 
   @ManyToOne(
     type => TodoListEntity,
