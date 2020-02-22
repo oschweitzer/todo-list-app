@@ -15,7 +15,7 @@ export class TodoListEntity {
   id: number;
 
   @Column()
-  name: string;
+  name?: string;
 
   @OneToMany(
     type => TodoListItemEntity,
@@ -24,7 +24,7 @@ export class TodoListEntity {
       eager: true,
     },
   )
-  items: TodoListItemEntity[];
+  items?: TodoListItemEntity[];
 
   @ManyToMany(
     type => CategoryEntity,
@@ -34,5 +34,5 @@ export class TodoListEntity {
     },
   )
   @JoinTable()
-  categories: CategoryEntity[];
+  categories?: CategoryEntity[];
 }

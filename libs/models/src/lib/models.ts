@@ -22,7 +22,7 @@ export interface CreateTodoListItemDto {
   description: string;
   startDate: Date;
   endDate: Date;
-  isDone: boolean;
+  isDone?: boolean;
   todoList: TodoListEntity;
 }
 
