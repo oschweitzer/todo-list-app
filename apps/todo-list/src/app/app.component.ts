@@ -1,16 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import {
-  ApplicationRef,
   Component,
-  ComponentFactoryResolver,
-  ElementRef,
-  EmbeddedViewRef,
-  Injector,
   OnInit,
-  Renderer2,
-  ViewChild,
+  QueryList,
+  ViewChildren,
+  ViewContainerRef,
 } from '@angular/core';
 import { MatDialog } from '@angular/material';
+// eslint-disable-next-line import/no-unresolved
 import { CategoryEntity, TodoListEntity } from '@todo-list-app/models';
 import { Observable } from 'rxjs';
 import { CategoryCreationFormComponent } from './todo-list/components/category-creation-form/category-creation-form.component';
@@ -19,8 +16,6 @@ import { TodoListComponent } from './todo-list/components/todo-list/todo-list.co
 import { TodoListCategoryService } from './todo-list/services/todo-list-category.service';
 import { TodoListService } from './todo-list/services/todo-list.service';
 
-// eslint-disable-next-line import/no-unresolved
-
 @Component({
   selector: 'todo-list-app-root',
   templateUrl: './app.component.html',
@@ -28,42 +23,27 @@ import { TodoListService } from './todo-list/services/todo-list.service';
   providers: [TodoListService, TodoListCategoryService],
 })
 export class AppComponent implements OnInit {
-  @ViewChild('todoListsRef', { static: false }) todoListRef: ElementRef;
+  @ViewChildren(TodoListComponent, { read: ViewContainerRef })
+  todoLists: QueryList<ViewContainerRef>;
   todoLists$: Observable<TodoListEntity[]>;
 
   constructor(
     private http: HttpClient,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef,
-    private injector: Injector,
-    private renderer: Renderer2,
     public dialog: MatDialog,
     private readonly todoListService: TodoListService,
     private readonly categoryService: TodoListCategoryService,
   ) {}
 
   ngOnInit(): void {
-    this.todoLists$ = this.todoListService.getAll();
+    this.todoLists$ = this.todoListService._todoLists;
+    this.todoListService.getAll();
   }
 
-  createTodoList(todoList: {
-    category: CategoryEntity;
-    name: string;
-  }): void {
+  createTodoList(todoList: { category: CategoryEntity; name: string }): void {
     this.todoListService
       .save({ name: todoList.name, categories: [todoList.category] })
       .subscribe(response => {
-        const componentRef = this.componentFactoryResolver
-          .resolveComponentFactory(TodoListComponent)
-          .create(this.injector);
-        this.appRef.attachView(componentRef.hostView);
-        const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
-          .rootNodes[0] as HTMLElement;
-        componentRef.instance.category = todoList.category.name;
-        componentRef.instance.name = todoList.name;
-        componentRef.instance.domElement = domElem;
-        componentRef.instance.id = response.data[0].id;
-        this.renderer.appendChild(this.todoListRef.nativeElement, domElem);
+        this.todoListService.getAll();
       });
   }
 
@@ -91,5 +71,9 @@ export class AppComponent implements OnInit {
         this.createCategory(data);
       }
     });
+  }
+
+  onRemove(): void {
+    this.todoListService.getAll();
   }
 }

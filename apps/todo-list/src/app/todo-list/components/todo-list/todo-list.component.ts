@@ -1,14 +1,17 @@
 import {
-  ApplicationRef,
   Component,
-  ComponentFactoryResolver,
-  ElementRef,
-  EmbeddedViewRef,
-  Injector,
+  EventEmitter,
   Input,
-  Renderer2,
-  ViewChild,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren,
+  ViewContainerRef,
 } from '@angular/core';
+// eslint-disable-next-line import/no-unresolved
+import { TodoListItemEntity } from '@todo-list-app/models';
+import { Observable } from 'rxjs';
+import { TodoListItemService } from '../../services/todo-list-item.service';
 import { TodoListService } from '../../services/todo-list.service';
 import { TodoListItemComponent } from '../todo-list-item/todo-list-item.component';
 
@@ -16,43 +19,48 @@ import { TodoListItemComponent } from '../todo-list-item/todo-list-item.componen
   selector: 'todo-list-app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
-  providers: [TodoListService],
+  providers: [TodoListService, TodoListItemService],
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   @Input() category: string;
   @Input() name: string;
-  domElement: any; // self reference to this component in the DOM, used to remove element from the parent node.
-  id: number; // ID of the list in the database
+  @Input() id: number; // ID of the list in the database
+  @Output() remove = new EventEmitter();
 
-  @ViewChild('todoListItemsRef', { static: false })
-  todoListItemsRef: ElementRef;
+  @ViewChildren(TodoListItemComponent, { read: ViewContainerRef })
+  todoListItems: QueryList<ViewContainerRef>;
+  todoListItems$: Observable<TodoListItemEntity[]>;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef,
-    private injector: Injector,
-    private renderer: Renderer2,
     private readonly todoListService: TodoListService,
+    private readonly todoListItemService: TodoListItemService,
   ) {}
 
+  ngOnInit(): void {
+    this.todoListItems$ = this.todoListItemService._todoListItems;
+    this.todoListItemService.getAllItemsFromList(this.id);
+  }
+
   addNewItem(): void {
-    // add new item component
-    const componentRef = this.componentFactoryResolver
-      .resolveComponentFactory(TodoListItemComponent)
-      .create(this.injector);
-    this.appRef.attachView(componentRef.hostView);
-    const domElem = (componentRef.hostView as EmbeddedViewRef<any>)
-      .rootNodes[0] as HTMLElement;
-    componentRef.instance.domElement = domElem;
-    this.renderer.appendChild(this.todoListItemsRef.nativeElement, domElem);
+    this.todoListItemService
+      .save({
+        description: '',
+        startDate: new Date(),
+        endDate: new Date(),
+        todoList: {
+          id: this.id,
+        },
+      })
+      .subscribe(() => this.todoListItemService.getAllItemsFromList(this.id));
   }
 
   removeList(): void {
     this.todoListService.remove(this.id).subscribe(response => {
-      this.renderer.removeChild(
-        this.renderer.parentNode(this.domElement),
-        this.domElement,
-      );
+      this.remove.emit();
     });
+  }
+
+  onRemoveItem(): void {
+    this.todoListItemService.getAllItemsFromList(this.id);
   }
 }

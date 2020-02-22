@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+// eslint-disable-next-line import/no-unresolved
 import { DataMessage } from '@todo-list-app/api-interfaces';
+// eslint-disable-next-line import/no-unresolved
 import { CategoryEntity, CreateCategoryDto } from '@todo-list-app/models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

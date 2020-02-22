@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
+// eslint-disable-next-line import/no-unresolved
 import { CategoryEntity } from '@todo-list-app/models';
 import { Observable } from 'rxjs';
 import { TodoListCategoryService } from '../../services/todo-list-category.service';

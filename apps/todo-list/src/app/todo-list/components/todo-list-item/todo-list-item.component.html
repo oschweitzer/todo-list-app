@@ -8,7 +8,7 @@
         </label>
 
         <button mat-icon-button aria-label="Button with a check icon"
-                (click)="createTodoItem()">
+                (click)="createTodoItem()" [disabled]="validated">
           <mat-icon *ngIf="!created else edit" class="creation-validation-icon">check_circle</mat-icon>
           <ng-template #edit><mat-icon class="edit-icon">create</mat-icon></ng-template>
         </button>
