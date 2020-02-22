@@ -17,4 +17,12 @@ export class TodoListItemService extends CrudService<
   ) {
     super(todoListItemRepository);
   }
+
+  async findAllFromTodoListId(id: number): Promise<TodoListItemEntity[]> {
+    return await this.todoListItemRepository.find({
+      where: {
+        todoListId: id,
+      },
+    });
+  }
 }
