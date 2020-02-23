@@ -9,17 +9,17 @@
 
         <button mat-icon-button aria-label="Button with a check icon"
                 (click)="createTodoItem()" [disabled]="validated">
-          <mat-icon *ngIf="!created else edit" class="creation-validation-icon">check_circle</mat-icon>
-          <ng-template #edit><mat-icon class="edit-icon">create</mat-icon></ng-template>
+          <mat-icon *ngIf="!created else edit" class="creation-validation-icon item-icon">check_circle</mat-icon>
+          <ng-template #edit><mat-icon class="edit-icon item-icon">create</mat-icon></ng-template>
         </button>
 
         <button mat-icon-button aria-label="Button with a check box icon" (click)="validateTodoItem()">
-          <mat-icon *ngIf="!validated else undone" class="todo-validation-icon">check_box_outline_blank</mat-icon>
-          <ng-template #undone><mat-icon class="todo-validation-icon">check_box</mat-icon></ng-template>
+          <mat-icon *ngIf="!validated else undone" class="todo-validation-icon item-icon">check_box_outline_blank</mat-icon>
+          <ng-template #undone><mat-icon class="todo-validation-icon item-icon">check_box</mat-icon></ng-template>
         </button>
 
         <button mat-icon-button aria-label="Button with a cross icon" (click)="removeTodoItem()">
-          <mat-icon class="remove-icon">remove_circle</mat-icon>
+          <mat-icon class="remove-icon item-icon">remove_circle</mat-icon>
         </button>
       </div>
 

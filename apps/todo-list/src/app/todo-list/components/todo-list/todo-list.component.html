@@ -20,7 +20,7 @@
       </button>
 
     </div>
-    <div>
+    <div class="items-container">
       <ng-container *ngFor="let todoListItem of todoListItems$ | async">
         <todo-list-app-todo-list-item
           [id]="todoListItem.id"
