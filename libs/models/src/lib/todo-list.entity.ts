@@ -22,6 +22,8 @@ export class TodoListEntity {
     item => item.todoList,
     {
       eager: true,
+      cascade: true,
+      onDelete: 'CASCADE',
     },
   )
   items?: TodoListItemEntity[];
