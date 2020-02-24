@@ -36,9 +36,10 @@ export class TodoListItemEntity {
 
   @ManyToOne(
     type => TodoListEntity,
-    todoList => todoList.items, {
+    todoList => todoList.items,
+    {
       onDelete: 'CASCADE',
-    }
+    },
   )
   todoList: TodoListEntity;
 }
