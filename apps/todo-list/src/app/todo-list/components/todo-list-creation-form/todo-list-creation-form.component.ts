@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 // eslint-disable-next-line import/no-unresolved
 import { CategoryEntity } from '@todo-list-app/models';
@@ -23,7 +23,7 @@ export class TodoListCreationFormComponent implements OnInit {
   ) {
     this.todoCreationForm = this.formBuilder.group({
       category: {},
-      name: '',
+      name: ['', Validators.required],
     });
   }
 

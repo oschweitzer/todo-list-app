@@ -22,6 +22,15 @@ export class TodoListCategoryService {
       .pipe(map(response => response.data));
   }
 
+  checkIfExists(
+    category: CreateCategoryDto,
+  ): Observable<CategoryEntity | undefined> {
+    // TODO filtering is done here, but tha API should allow to request directly with option ?name=myName
+    return this.getAll().pipe(
+      map(data => data.find(data => data.name === category.name)),
+    );
+  }
+
   save(category: CreateCategoryDto): Observable<CategoryEntity[]> {
     return this.httpClient
       .post<DataMessage<CategoryEntity>>(

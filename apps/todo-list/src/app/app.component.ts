@@ -48,7 +48,11 @@ export class AppComponent implements OnInit {
   }
 
   createCategory(category: { name: string }): void {
-    this.categoryService.save(category).subscribe();
+    this.categoryService.checkIfExists(category).subscribe(res => {
+      if (typeof res === 'undefined') {
+        this.categoryService.save(category).subscribe();
+      }
+    });
   }
 
   openCreateTodoListForm(): void {

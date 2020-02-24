@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { TodoListCategoryService } from '../../services/todo-list-category.service';
 
@@ -16,7 +16,7 @@ export class CategoryCreationFormComponent {
     public dialogRef: MatDialogRef<CategoryCreationFormComponent>,
   ) {
     this.categoryCreationForm = this.formBuilder.group({
-      name: '',
+      name: ['', Validators.required],
     });
   }
 
