@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
@@ -12,10 +12,10 @@ import {
   MatSelectModule,
   MatTooltipModule,
 } from '@angular/material';
+import { CategoryCreationFormComponent } from './components/category-creation-form/category-creation-form.component';
+import { TodoListCreationFormComponent } from './components/todo-list-creation-form/todo-list-creation-form.component';
 import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { TodoListCreationFormComponent } from './components/todo-list-creation-form/todo-list-creation-form.component';
-import { CategoryCreationFormComponent } from './components/category-creation-form/category-creation-form.component';
 
 @NgModule({
   declarations: [

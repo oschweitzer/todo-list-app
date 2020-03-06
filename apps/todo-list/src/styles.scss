@@ -30,3 +30,5 @@ $todo-list-theme: mat-light-theme($todo-list-primary, $todo-list-accent, $todo-l
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* We must specify this font for the icons since we use another font for the whole project: see https://github.com/angular/components/issues/5863 */
+mat-icon{ font-family: 'Material Icons' !important; }
