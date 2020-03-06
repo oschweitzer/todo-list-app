@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatSidenavModule,
+  MatToolbarModule,
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -12,10 +18,12 @@ import { TodoListModule } from './todo-list/todo-list.module';
   imports: [
     RouterModule.forRoot([
       {
-        path: 'categories', component: CategoryManagementComponent
+        path: 'categories',
+        component: CategoryManagementComponent,
       },
       {
-        path: '', component: HomeComponent
+        path: '',
+        component: HomeComponent,
       },
     ]),
     TodoListModule,

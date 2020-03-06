@@ -9,11 +9,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
-  MatMenuModule,
   MatSelectModule,
-  MatSidenavModule,
-  MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
@@ -48,15 +44,19 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
+    RouterModule.forRoot(
+      [
         {
-          path: 'categories', component: CategoryManagementComponent
+          path: 'categories',
+          component: CategoryManagementComponent,
         },
         {
-          path: '', component: HomeComponent
+          path: '',
+          component: HomeComponent,
         },
       ],
-      { enableTracing: true }),
+      { enableTracing: true },
+    ),
   ],
   entryComponents: [
     TodoListComponent,

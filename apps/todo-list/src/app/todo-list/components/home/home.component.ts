@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  QueryList,
+  ViewChildren,
+  ViewContainerRef,
+} from '@angular/core';
 import { MatDialog } from '@angular/material';
 // eslint-disable-next-line import/no-unresolved
 import { CategoryEntity, TodoListEntity } from '@todo-list-app/models';

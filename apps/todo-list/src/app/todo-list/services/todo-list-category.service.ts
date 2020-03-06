@@ -39,4 +39,10 @@ export class TodoListCategoryService {
       )
       .pipe(map(response => response.data));
   }
+
+  remove(id: number): Observable<DataMessage<CategoryEntity>> {
+    return this.httpClient.delete<DataMessage<CategoryEntity>>(
+      `${environment.api.baseUrl}/api/categories/${id}`,
+    );
+  }
 }

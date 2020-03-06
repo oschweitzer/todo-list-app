@@ -1,12 +1,19 @@
 <div class="category-management-container">
-  <form [formGroup]="categoryManagementForm" (ngSubmit)="submit()">
+  <form [formGroup]="categoryManagementForm">
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Select a category</mat-label>
       <label>
-        <mat-select>
+        <mat-select formControlName="category" (selectionChange)="onCategorySelection($event)">
           <mat-option></mat-option>
+          <mat-option [value]="category"
+                      *ngFor="let category of categories$ | async">{{category.name}}</mat-option>
         </mat-select>
       </label>
     </mat-form-field>
+
+      <button mat-button [disabled]="!disableBtn" (click)="editCategory()">Edit</button>
+      <button mat-button [disabled]="!disableBtn" (click)="deleteCategory()">Delete</button>
+
+
   </form>
 </div>
