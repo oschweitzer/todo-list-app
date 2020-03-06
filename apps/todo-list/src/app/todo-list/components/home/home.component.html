@@ -1,0 +1,31 @@
+<div class="app-main-container">
+  <div class="creation-section-container">
+    <div class="creation-section">
+      <h3>Create TODO list</h3><br>
+      <button mat-fab color="primary" aria-label="Button with a plus icon" (click)="openCreateTodoListForm()"
+              class="create-button" matTooltip="Create a new Todo list">
+        +
+      </button>
+    </div>
+
+    <div class="creation-section">
+      <h3>Create a category</h3><br>
+      <button mat-fab color="accent" aria-label="Button with a plus icon" (click)="openCreateCategoryForm()"
+              class="create-button" matTooltip="Create a new category">
+        +
+      </button>
+    </div>
+
+  </div>
+  <div class="todo-list-container">
+    <ng-container *ngFor="let todoList of todoLists$ | async">
+      <todo-list-app-todo-list
+        [category]="todoList.categories[0] ? todoList.categories[0].name : ''"
+        [name]="todoList.name ? todoList.name : ''"
+        [id]="todoList.id"
+        (remove)="onRemove()"></todo-list-app-todo-list>
+    </ng-container>
+  </div>
+</div>
+
+

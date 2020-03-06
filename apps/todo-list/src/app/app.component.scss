@@ -4,6 +4,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -22,17 +23,6 @@
   margin-left: 2%;
 }
 
-.app-main-container {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-.main-header {
-  display: flex;
-  justify-content: center;
-}
-
 .menu-container {
   flex: 1;
 }
@@ -43,28 +33,4 @@
 
 .mat-list-item {
   color: white;
-}
-
-.creation-section-container {
-  margin-left: 10%;
-  margin-right: 10%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
-
-.creation-section {
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.create-button {
-  font-weight: bolder;
-  font-size: 2em;
-}
-
-.todo-list-container {
-  margin-top: 5%;
 }

@@ -1,43 +1,30 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatTooltipModule,
-} from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CategoryManagementComponent } from './todo-list/components/category-management/category-management.component';
+import { HomeComponent } from './todo-list/components/home/home.component';
 import { TodoListModule } from './todo-list/todo-list.module';
 
 @NgModule({
-  declarations: [AppComponent, CategoryManagementComponent],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
+    RouterModule.forRoot([
+      {
+        path: 'categories', component: CategoryManagementComponent
+      },
+      {
+        path: '', component: HomeComponent
+      },
+    ]),
     TodoListModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatListModule,
-    MatMenuModule,
+    BrowserAnimationsModule,
     MatToolbarModule,
-    MatCardModule,
-    MatButtonModule,
     MatIconModule,
-    MatDialogModule,
-    MatTooltipModule,
+    MatListModule,
+    MatSidenavModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

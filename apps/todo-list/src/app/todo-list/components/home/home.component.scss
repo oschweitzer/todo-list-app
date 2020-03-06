@@ -1,0 +1,29 @@
+.app-main-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.creation-section-container {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.creation-section {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-button {
+  font-weight: bolder;
+  font-size: 2em;
+}
+
+.todo-list-container {
+  margin-top: 5%;
+}
