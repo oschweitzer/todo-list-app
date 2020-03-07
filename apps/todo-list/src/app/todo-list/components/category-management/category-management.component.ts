@@ -14,7 +14,8 @@ import { TodoListCategoryService } from '../../services/todo-list-category.servi
 export class CategoryManagementComponent implements OnInit {
   categoryManagementForm;
   categories$: Observable<CategoryEntity[]>;
-  disableBtn = false;
+  disableBtn = true;
+  enableEdition = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -23,6 +24,7 @@ export class CategoryManagementComponent implements OnInit {
   ) {
     this.categoryManagementForm = this.formBuilder.group({
       category: {},
+      categoryEdition: '',
     });
   }
 
@@ -31,11 +33,21 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   onCategorySelection(event): void {
-    this.disableBtn = !!event.value;
+    console.log(event);
+    this.disableBtn = !event.value;
   }
 
   editCategory(): void {
-    // update
+    this.categoryService
+      .update(this.categoryManagementForm.get('category').value.id, {
+        name: this.categoryManagementForm.get('categoryEdition').value,
+      })
+      .subscribe(response => {
+        this.categories$ = this.categoryService.getAll();
+        this.enableEdition = false;
+        this.disableBtn = true;
+        this.categoryManagementForm.reset();
+      });
   }
 
   deleteCategory(): void {
