@@ -18,21 +18,18 @@ import { environment } from '../../../environments/environment';
 export class TodoListCategoryService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  getAll(): Observable<CategoryEntity[]> {
+  getAll(filter?: string): Observable<CategoryEntity[]> {
     return this.httpClient
       .get<DataMessage<CategoryEntity>>(
-        `${environment.api.baseUrl}/api/categories`,
+        `${environment.api.baseUrl}/api/categories${
+          filter ? '?_filters=' + filter : ''
+        }`,
       )
       .pipe(map(response => response.data));
   }
 
-  checkIfExists(
-    category: CreateCategoryDto,
-  ): Observable<CategoryEntity | undefined> {
-    // TODO filtering is done here, but tha API should allow to request directly with option ?name=myName
-    return this.getAll().pipe(
-      map(data => data.find(data => data.name === category.name)),
-    );
+  checkIfExists(category: CreateCategoryDto): Observable<CategoryEntity[]> {
+    return this.getAll(`name:${category.name}`);
   }
 
   save(category: CreateCategoryDto): Observable<CategoryEntity[]> {

@@ -17,8 +17,13 @@ export class CrudService<T extends Repository<U>, U extends ObjectLiteral> {
     }
   }
 
-  async findAll(): Promise<U[]> {
-    return await this.repository.find();
+  async findAll(filter: {} = null): Promise<U[]> {
+    const condition = filter
+      ? {
+          where: filter,
+        }
+      : null;
+    return await this.repository.find(condition);
   }
 
   async updateOne(id: number, changes: DeepPartial<U>): Promise<U> {

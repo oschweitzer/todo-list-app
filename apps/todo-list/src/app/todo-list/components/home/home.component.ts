@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   createCategory(category: { name: string }): void {
     this.categoryService.checkIfExists(category).subscribe(res => {
-      if (typeof res === 'undefined') {
+      if (res.length === 0) {
         this.categoryService.save(category).subscribe();
       }
     });

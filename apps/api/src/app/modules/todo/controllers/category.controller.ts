@@ -6,9 +6,13 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 // eslint-disable-next-line import/no-unresolved
+import { parseQuery } from '@todo-list-app/api-helpers';
+// eslint-disable-next-line import/no-unresolved
 import { DataMessage } from '@todo-list-app/api-interfaces';
+
 import {
   CategoryEntity,
   CreateCategoryDto,
@@ -25,6 +29,7 @@ export class CategoryController {
   async createOne(
     @Body() createDto: CreateCategoryDto,
   ): Promise<DataMessage<CategoryEntity>> {
+    createDto.name = createDto.name.toLowerCase();
     return {
       message: 'Category has been successfully created',
       data: [await this.categoryService.createOne(createDto)],
@@ -32,10 +37,14 @@ export class CategoryController {
   }
 
   @Get()
-  async getAll(): Promise<DataMessage<CategoryEntity>> {
+  async getAll(
+    @Query('_filters') filters,
+  ): Promise<DataMessage<CategoryEntity>> {
     return {
       message: 'Categories successfully fetched',
-      data: await this.categoryService.findAll(),
+      data: await this.categoryService.findAll(
+        filters ? parseQuery(filters) : null,
+      ),
     };
   }
 
