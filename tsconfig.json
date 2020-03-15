@@ -19,7 +19,10 @@
       "@todo-list-app/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@todo-list-app/crud": ["libs/crud/src/index.ts"],
       "@todo-list-app/models": ["libs/models/src/index.ts"],
-      "@todo-list-app/api-helpers": ["libs/api-helpers/src/index.ts"]
+      "@todo-list-app/api-helpers": ["libs/api-helpers/src/index.ts"],
+      "@todo-list-app/query-parameters-pipe": [
+        "libs/query-parameters-pipe/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

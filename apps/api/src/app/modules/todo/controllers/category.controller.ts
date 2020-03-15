@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
 } from '@nestjs/common';
 // eslint-disable-next-line import/no-unresolved
 import { parseQuery } from '@todo-list-app/api-helpers';
@@ -19,6 +20,7 @@ import {
   UpdateCategoryDto,
   // eslint-disable-next-line import/no-unresolved
 } from '@todo-list-app/models';
+import { QueryParametersPipe } from '@todo-list-app/query-parameters-pipe';
 import { CategoryService } from '../services/category.service';
 
 @Controller('categories')
@@ -37,9 +39,8 @@ export class CategoryController {
   }
 
   @Get()
-  async getAll(
-    @Query('_filters') filters,
-  ): Promise<DataMessage<CategoryEntity>> {
+  @UsePipes(new QueryParametersPipe(CategoryEntity))
+  async getAll(@Query() filters): Promise<DataMessage<CategoryEntity>> {
     return {
       message: 'Categories successfully fetched',
       data: await this.categoryService.findAll(

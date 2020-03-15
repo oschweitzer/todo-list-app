@@ -31,6 +31,9 @@
     },
     "api-helpers": {
       "tags": []
+    },
+    "query-parameters-pipe": {
+      "tags": []
     }
   }
 }

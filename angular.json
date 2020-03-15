@@ -221,6 +221,31 @@
           }
         }
       }
+    },
+    "query-parameters-pipe": {
+      "root": "libs/query-parameters-pipe",
+      "sourceRoot": "libs/query-parameters-pipe/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/query-parameters-pipe/tsconfig.lib.json",
+              "libs/query-parameters-pipe/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/query-parameters-pipe/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/query-parameters-pipe/jest.config.js",
+            "tsConfig": "libs/query-parameters-pipe/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
