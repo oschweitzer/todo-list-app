@@ -40,11 +40,11 @@ export class CategoryController {
 
   @Get()
   @UsePipes(new QueryParametersPipe(CategoryEntity))
-  async getAll(@Query() filters): Promise<DataMessage<CategoryEntity>> {
+  async getAll(@Query() filters: string): Promise<DataMessage<CategoryEntity>> {
     return {
       message: 'Categories successfully fetched',
       data: await this.categoryService.findAll(
-        filters ? parseQuery(filters) : null,
+        filters && filters.length > 0 ? parseQuery(filters) : null,
       ),
     };
   }

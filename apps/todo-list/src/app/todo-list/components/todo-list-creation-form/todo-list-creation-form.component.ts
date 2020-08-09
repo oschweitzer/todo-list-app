@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 // eslint-disable-next-line import/no-unresolved
 import { CategoryEntity } from '@todo-list-app/models';
 import { Observable } from 'rxjs';

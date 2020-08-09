@@ -26,7 +26,7 @@ export class TodoListItemComponent implements OnInit, AfterViewInit {
   validated = false;
   created = false;
 
-  @ViewChild('todoText', { static: false }) todoText: ElementRef;
+  @ViewChild('todoText') todoText: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,

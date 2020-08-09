@@ -33,7 +33,6 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   onCategorySelection(event): void {
-    console.log(event);
     this.disableBtn = !event.value;
   }
 

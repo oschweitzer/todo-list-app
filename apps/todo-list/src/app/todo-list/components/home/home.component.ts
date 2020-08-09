@@ -6,7 +6,7 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 // eslint-disable-next-line import/no-unresolved
 import { CategoryEntity, TodoListEntity } from '@todo-list-app/models';
 import { Observable } from 'rxjs';
