@@ -42,7 +42,7 @@
     "@angular/router": "^10.0.8",
     "@nestjs/common": "^6.8.3",
     "@nestjs/core": "^6.8.3",
-    "@nestjs/platform-express": "^6.8.3",
+    "@nestjs/platform-express": "^9.2.1",
     "@nestjs/swagger": "^4.2.3",
     "@nestjs/typeorm": "^6.2.0",
     "@nrwl/angular": "8.11.2",
